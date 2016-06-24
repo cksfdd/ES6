@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        const contains = (() =>
+        Array.prototype.includes
+                ? (arr, value) => arr.includes(value)
+        : (arr, value) => arr.some(el => el === value))();
+        contains(["foo", "bar"], "baz");
+    </script>
+</head>
+<body>
+<div>
+    <h2>test</h2>
+</div>
+</body>
+</html>

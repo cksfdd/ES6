@@ -1,0 +1,43 @@
+<!--
+ 创建时间 15/11/19
+ QQ: 1405491181
+ 个人网站: forjs.org
+ 版权所有: 曾亮 <1405491181@qq.com>
+ 说明: 未经许可,此视频和资料不可用于商业用途,违者必究.
+-->
+<script>
+// 运行在 firefox 浏览器
+
+    var obj = {name:'leo',group:'javascript',_type:'student'};
+
+    var proxy = new Proxy(obj,{
+        get:function(target,key){
+            if(key[0]!=='_'){
+                console.log(key);
+                return target[key];
+            }
+        },
+        set: function (target,key,value) {
+            if(key[0]!=='_') {
+//                Reflect.set(target, key, value);
+                target[key] = value;
+            }
+        },
+        deleteProperty:function(target,key){
+            if(key[0]!=='_'){
+                delete target[key]
+//                Reflect.deleteProperty(target,key);
+            }
+        },
+        hasOwn:function(target,key){
+            console.log('hasOwnProperty!!');
+        }
+    });
+
+    console.log(proxy._type,obj._type);
+    delete proxy._type;
+    console.log(obj._type);
+
+    proxy.hasOwnProperty('hhh');
+
+</script>

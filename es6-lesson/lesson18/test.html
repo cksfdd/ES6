@@ -1,0 +1,33 @@
+<!--
+创建时间 15/11/9
+公众号: forjs_org
+QQ: 1405491181  Email: 1405491181@qq.com
+site: www.forjs.org
+版权所有: 曾亮
+-->
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var socket = new WebSocket('ws://127.0.0.1:3000');
+    socket.binaryType = 'arraybuffer';
+
+    // Wait until socket is open
+    socket.addEventListener('open', function (event) {
+        // Send binary data
+        var typedArray = new Uint8Array(4);
+        socket.send(typedArray.buffer);
+    });
+
+    // Receive binary data
+    socket.addEventListener('message', function (event) {
+        var arrayBuffer = event.data;
+        // ···
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!--
+ 创建时间 15/11/23
+ QQ: 1405491181
+ 个人网站: forjs.org
+ 版权所有: 曾亮 <1405491181@qq.com>
+ 说明: 未经许可,此视频和资料不可用于商业用途,违者必究.
+ 奖励: 购买到盗版的学员,可与作者联系,有奖励.
+-->
+
+<script>
+    // 运行在 firefox 浏览器
+    // for in / in
+    var obj = {_name:"leo",name:'zengliang'};
+
+    var proxy = new Proxy(obj, {
+        has: function (target,key) {
+            if(key[0] === '_'){
+                return false;
+            }else{
+                return key in target;
+            }
+        }
+    });
+
+    var bool = 'name' in proxy;
+    console.log('has name',bool);
+    console.log('has _name','_name' in proxy);
+
+
+    // for in
+    var obj2 = {
+        name:'leo',
+        _name:'zengliang',
+        age:22,
+        group:'javascript'
+    };
+
+    var proxy2 = new Proxy(obj2,{
+        enumerate: function (target) {
+            return Object.keys(target).filter(function(key){
+                return key[0] !== '_'
+            })[Symbol.iterator]();
+        }
+    });
+
+    for(var key in proxy2){
+        console.log(key);
+    }
+
+</script>
