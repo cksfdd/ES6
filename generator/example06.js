@@ -4,7 +4,7 @@ function asyncF(name){
     return new Promise(function(resolve){
         setTimeout(function(){
          resolve('my name is '+ name);
-        })
+        }, 500)
     });
 }
 

@@ -5,9 +5,7 @@
     <title>Title</title>
     <script>
         const contains = (() =>
-        Array.prototype.includes
-                ? (arr, value) => arr.includes(value)
-        : (arr, value) => arr.some(el => el === value))();
+        Array.prototype.includes ? (arr, value) => arr.includes(value) : (arr, value) => arr.some(el => el === value))();
         contains(["foo", "bar"], "baz");
     </script>
 </head>

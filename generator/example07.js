@@ -4,7 +4,7 @@ function asyncF(name){
     return new Promise(function(resolve){
         setTimeout(function(){
          resolve('my name is '+ name);
-        })
+        },500)
     });
 }
 
@@ -12,7 +12,7 @@ function sum(a,b){
     return new Promise(function(resolve){
         setTimeout(function(){
             resolve(a+b);
-        });
+        }, 500);
     });
 }
 
@@ -24,7 +24,7 @@ function * fn(name){
     }
 }
 
-let gf = fn();//等到的是一个js的指针对象；
+let gen = fn('chen');//等到的是一个js的指针对象；
 function exec(gf,value){
     let result =gf.next(value);
     if(!result.done){
@@ -37,4 +37,4 @@ function exec(gf,value){
         }
     }
 }
-exec(gf);
+exec(gen);
